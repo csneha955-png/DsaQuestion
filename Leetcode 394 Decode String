@@ -1,0 +1,47 @@
+class Solution {
+public:
+
+    string solve(int n,string k){
+        string ans="";
+        while(n>0){
+            ans+=k;
+            n--;
+        }
+        return ans;
+    }
+
+    string decodeString(string s) {
+        int n=s.size();
+        stack<char>st;
+        for(char ch: s){
+            st.push(ch);
+            string k="";
+            if(st.top()==']'){
+                st.pop();
+                while(st.top()!='['){
+                    k=st.top()+k;
+                    st.pop();
+                }
+                st.pop();
+                string h="";
+            while(st.size()>0 && (st.top()-'0')>=0 && (st.top()-'0')<10){
+                h=st.top()+h;
+                st.pop();
+            }
+            int n=stoi(h);
+            string temp="";
+            temp=solve(n,k);
+            for(char ch:temp){
+                st.push(ch);
+            }
+            }
+            
+        }
+        string ans="";
+        while(st.size()>0){
+            ans=st.top()+ans;
+            st.pop();
+        }
+        return ans;
+    }
+};
