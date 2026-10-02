@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool check(TreeNode* root, TreeNode* p){
+        if(root==NULL)return false;
+        if(root==p)return true;
+        return check(root->left,p)||check(root->right,p);
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root==NULL)return NULL;
+        if(root==p || root==q)return root;
+        if(check(root->left,p)&&check(root->right,q))return root;
+        if(check(root->left,q)&&check(root->right,p))return root;
+        TreeNode* l=lowestCommonAncestor(root->left,p,q);
+        if(l!=NULL) return l;
+        return lowestCommonAncestor(root->right,p,q);
+    }
+};
