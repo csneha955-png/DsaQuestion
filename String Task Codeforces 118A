@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string t;
+    cin>>t;
+    string s;
+    string sn="";
+    for(int i=0;i<t.size();i++){
+        t[i]=tolower(t[i]);
+        s=s+t[i];
+    }
+    stack<char>st;
+    for(int i=0;i<t.size();i++){
+        if(s[i]=='a' || s[i]=='o' || s[i]=='y' || s[i]=='e' || s[i]=='u' || s[i]=='i'){
+            continue;
+        }
+        else{
+            st.push('.');
+            st.push(s[i]);
+        }
+    }
+    while(st.size()>0){
+        sn=st.top()+sn;
+        st.pop();
+    }
+    cout<<sn<<endl;
+}
